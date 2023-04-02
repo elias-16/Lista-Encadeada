@@ -1,4 +1,4 @@
-package listaEncadeada;
+package ED;
 
 public class ListaEncadeada{
 	
@@ -93,10 +93,6 @@ public class ListaEncadeada{
 			System.out.println("Posição inválida!");
 			return false;
 		}
-		else if(pos > tamanho + 1) {
-			System.out.println("Posição inválida!");
-			return false;
-		}
 		else if(pos == 1) { // Início da lista.
 			
 			No novoNo = new No();
@@ -110,9 +106,11 @@ public class ListaEncadeada{
 		else if(pos == tamanho + 1) { // Fim da lista.
 			
 			No novoNo = new No();
+			novoNo.setDado(valor);
+			
 			No aux = primeiro;
-			for(int i = 1; i < pos; i++) {
-				aux = aux.getProx();		
+			while(aux.getProx() != null) {
+				aux = aux.getProx();
 		}	
 			
 		novoNo.setProx(null);
@@ -153,12 +151,13 @@ public class ListaEncadeada{
 		}
 		else {
 			No atual = null, antecessor = null;
-			int valor = -1; i = 1;
+			int valor = -1;
+			int i = 1;
 			
 			atual = primeiro;
-			for((cont < pos) && (atual =! null)) {
+			while(i < pos){
 				antecessor = atual;
-				atual = atual.getProx();	
+				atual = atual.getProx();
 				i++;
 			}
 			
@@ -175,19 +174,35 @@ public class ListaEncadeada{
 	
 	// 7. Imprimir os elementos de toda a lista.
 	
-	public boolean imprimirLista() {
-		if(tamanho == 0) {
-			System.out.println("Lista está vazia!");
+		public boolean imprimirLista() {
+			if(tamanho == 0) {
+				System.out.println("Lista está vazia!");
+				return true;
+			}
+			
+			No aux = primeiro;
+			
+			for(int i = 1; i <= tamanho; i++) {
+				System.out.print(" " +aux.getDado());
+				aux = aux.prox;
+			}
+			System.out.println("");
 			return true;
 		}
+	
+	public static void main(String[] args) {
+		ListaEncadeada lista = new ListaEncadeada();
 		
-		No aux;
-		for(No aux = primeiro; aux != null; aux = aux.prox) {
-			System.out.println(" " +aux.getDado());
-		}
-		return true;
-	}
-	
-	
+		// Testando...
+		
+		lista.inserirValor(1, 4);
+		lista.inserirValor(2, 5);
+		lista.inserirValor(3, 6);
+		lista.inserirValor(4, 8);
+		lista.inserirValor(5, 47);
+		lista.inserirValor(6, 37);
+		lista.imprimirLista();
+		lista.removerValor(4);
+		lista.imprimirLista();
+	}		
 }
-
