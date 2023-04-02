@@ -27,7 +27,7 @@ public class ListaEncadeada{
 		}
 	}
 	
-	private No primeiro	;
+	private No primeiro;
 	private int tamanho;
 	
 	// 1. Criação de lista vazia.
